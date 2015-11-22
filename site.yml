@@ -1,0 +1,17 @@
+---
+
+- name: Elasticsearch instance
+  hosts: elasticsearch
+  sudo: yes
+  roles:
+    - elasticsearch
+    - kibana
+  tags:
+    - elasticsearch
+  vars:
+    - es_major_version: 1.7
+    - es_start_service: true
+    - es_plugins:
+      - plugin: elasticsearch/marvel
+        version: latest
+    - kibana_version: 4.1.2
