@@ -15,3 +15,8 @@
 - name: Kibana configuration
   copy: src=kibana.yml dest={{kibana.installdir}}/config/kibana.yml mode=644
   notify: restart kibana
+
+- name: Install Kibana plugins
+  command: ./bin/kibana plugin --install {{item}} chdir={{kibana.installdir}}
+  with_items: "{{kibana_plugins}}"
+  notify: restart kibana
